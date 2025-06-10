@@ -1,26 +1,26 @@
 #include <stdio.h>
 
 /**
-  * main - Prints a hexadecimal string
+  * main - Prints a serie of numbers with commas
   *
-  * Return: Always (Success)
+  * Return: Always (Success);
   */
 int main(void)
 {
-	char c;
+	int c;
 
 	for (c = '0'; c <= '9'; c++)
 	{
 		putchar(c);
-	}
 
-	for (c = 'a'; c <= 'f'; c++)
-	{
-		putchar(c);
+		if (c != '9')
+		{
+			putchar(',');
+			putchar(' ');
+		}
 	}
 
 	putchar('\n');
 
 	return (0);
 }
-
