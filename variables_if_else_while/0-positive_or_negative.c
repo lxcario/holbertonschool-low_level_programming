@@ -3,12 +3,9 @@
 #include <stdio.h>
 
 /**
- * main - Entry point
+ * main - Prints if number is positive, zero or negative
  *
- * Description: This program assigns a random number to n and prints whether
- * it is positive, negative, or zero.
- *
- * Return: Always 0 (Success)
+ * Return: Always (Success)
  */
 int main(void)
 {
@@ -17,20 +14,18 @@ int main(void)
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 
-	printf("%d ", n);
-
-if (n > 0)
-{
-		printf("is positive\n");
-}
-else if (n == 0)
-{
-		printf("is zero\n");
-}
-else
-{
-		printf("is negative\n");
-}
+	if (n > 0)
+	{
+		printf("%d is positive\n", n);
+	}
+	else if (n == 0)
+	{
+		printf("%d is zero\n", n);
+	}
+	else
+	{
+		printf("%d is negative\n", n);
+	}
 
 	return (0);
 }
