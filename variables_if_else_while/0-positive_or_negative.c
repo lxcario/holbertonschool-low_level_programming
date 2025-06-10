@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h> /* Required for printf function */
-
 /**
  * main - Entry point
  *
@@ -32,6 +31,5 @@ int main(void)
     {
         printf("is negative\n");
     }
-
     return (0);
 }
