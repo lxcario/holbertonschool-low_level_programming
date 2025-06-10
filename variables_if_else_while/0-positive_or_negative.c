@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
-#include <stdio.h> /* Required for printf function */
+#include <stdio.h>
+
 /**
  * main - Entry point
  *
@@ -11,25 +12,25 @@
  */
 int main(void)
 {
-    int n;
+	int n;
 
-    srand(time(0));
-    n = rand() - RAND_MAX / 2;
+	srand(time(0));
+	n = rand() - RAND_MAX / 2;
 
-    /* Your code goes here */
-    printf("%d ", n); /* Print the number followed by a space */
+	printf("%d ", n);
 
-    if (n > 0)
-    {
-        printf("is positive\n");
-    }
-    else if (n == 0)
-    {
-        printf("is zero\n");
-    }
-    else /* n < 0 */
-    {
-        printf("is negative\n");
-    }
-    return (0);
+if (n > 0)
+{
+		printf("is positive\n");
+}
+else if (n == 0)
+{
+		printf("is zero\n");
+}
+else
+{
+		printf("is negative\n");
+}
+
+	return (0);
 }
