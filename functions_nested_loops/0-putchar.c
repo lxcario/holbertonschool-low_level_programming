@@ -9,9 +9,8 @@
  * Return: Always 0 (Success)
  */
 int main(void)
-{ /* This brace should have NO leading spaces or tabs. It starts at column 1. */
-	/* Print each character of "_putchar" using _putchar */
-	_putchar('_'); /* One tab indent. */
+{
+	_putchar('_');
 	_putchar('p');
 	_putchar('u');
 	_putchar('t');
@@ -22,3 +21,4 @@ int main(void)
 	_putchar ('\n');
 
 	return (0);
+}
