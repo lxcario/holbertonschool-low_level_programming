@@ -1,19 +1,24 @@
-#include "main.h"
+#include "main.h" /* Include the custom header for function prototypes */
 
 /**
+ * print_alphabet - Prints the lowercase alphabet to stdout.
  *
- * print_alphabet - Print alphabet on lowercase
+ * Description: This function iterates through all lowercase letters from 'a'
+ * to 'z' using a for loop. Each character is printed to standard output
+ * using the _putchar function. Finally, a new line character is printed.
  *
- * Return - void (no return value)
+ * Return: void.
  */
 void print_alphabet(void)
 {
-	char letter;
+	char letter; /* Declare a character variable to hold each letter */
 
+	/* Loop through letters from 'a' to 'z' */
 	for (letter = 'a'; letter <= 'z'; letter++)
 	{
-		_putchar(letter);
+		_putchar(letter); /* Print the current letter */
 	}
 
-	_putchar('\n');
+	_putchar('\n'); /* Print a new line after the alphabet */
 }
+
