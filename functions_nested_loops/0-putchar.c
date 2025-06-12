@@ -3,15 +3,15 @@
 /**
  * main - Entry point
  *
- * Description: This program prints the string "_putchar" followed by a new
- * line, using the _putchar function.
+ * Description: This program prints the string "_putchar" followed by a
+ * new line, using the _putchar function.
  *
  * Return: Always 0 (Success)
  */
 int main(void)
 { /* This brace should have NO leading spaces or tabs. It starts at column 1. */
 	/* Print each character of "_putchar" using _putchar */
-	_putchar('_'); /* These _putchar lines should be indented with ONE TAB. */
+	_putchar('_'); /* One tab indent. */
 	_putchar('p');
 	_putchar('u');
 	_putchar('t');
@@ -19,9 +19,6 @@ int main(void)
 	_putchar('h');
 	_putchar('a');
 	_putchar('r');
-	_putchar ('\n'); /* This line is now correct with the space before parenthesis. */
+	_putchar ('\n');
 
-	return (0); /* This line should also be indented with ONE TAB. */
-} /* This brace should have NO leading spaces or tabs. It starts at column 1. */
-
-
+	return (0);
