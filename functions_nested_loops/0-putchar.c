@@ -1,22 +1,27 @@
-#include "main.h"
+#include "main.h" /* Correct: Using double quotes for custom header */
 
 /**
- * main -Entry point
+ * main - Entry point
  *
- * Return
+ * Description: This program prints the string "_putchar" followed by a new
+ * line, using the _putchar function.
+ *
+ * Return: Always 0 (Success)
  */
-	int main(void)
-	{
-		_putchar('_');
-		_putchar('p');
-		_putchar('u');
-		_putchar('t');
-		_putchar('c');
-		_putchar('h');
-		_putchar('a');
-		_putchar('r');
-		_putchar ('\n');
+int main(void)
+{ /* This brace should have NO leading spaces or tabs. It starts at column 1. */
+	/* Print each character of "_putchar" using _putchar */
+	_putchar('_'); /* These _putchar lines should be indented with ONE TAB. */
+	_putchar('p');
+	_putchar('u');
+	_putchar('t');
+	_putchar('c');
+	_putchar('h');
+	_putchar('a');
+	_putchar('r');
+	_putchar ('\n'); /* This line is now correct with the space before parenthesis. */
 
-		return(0);
-	}
+	return (0); /* This line should also be indented with ONE TAB. */
+} /* This brace should have NO leading spaces or tabs. It starts at column 1. */
+
 
