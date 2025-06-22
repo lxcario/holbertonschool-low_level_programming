@@ -1,27 +1,43 @@
 #include "main.h"
 
 /**
- * puts2 - Prints every other character of a string, starting with the first.
+ * puts_half - Prints the second half of a string.
  * @str: The string to be processed.
  *
- * Description: This function iterates through the input string and prints
- * characters at even indices (0, 2, 4, ...). After printing the
- * characters, it prints a newline.
+ * Description: This function calculates the length of the string.
+ * It then determines the starting point for the second half. For an
+ * even number of characters, it starts at the midpoint. For an odd
+ * number, it starts at the character after the midpoint.
+ * Finally, it prints the second half of the string followed by a newline.
  */
-void puts2(char *str)
+void puts_half(char *str)
 {
-	int i = 0;
+	int length = 0;
+	int start_index;
+	int i;
 
-	/* Loop through the string */
-	while (str[i] != '\0')
+	/* Calculate the full length of the string */
+	while (str[length] != '\0')
 	{
-		/* Check if the current index is even */
-		if (i % 2 == 0)
-		{
-			_putchar(str[i]);
-		}
-		i++;
+		length++;
 	}
-	/* Print a newline character at the end */
+
+	/* Determine the starting index for the second half */
+	if (length % 2 == 0)
+	{
+		start_index = length / 2;
+	}
+	else
+	{
+		start_index = (length + 1) / 2;
+	}
+
+	/* Print the characters from the start index to the end */
+	for (i = start_index; i < length; i++)
+	{
+		_putchar(str[i]);
+	}
+
 	_putchar('\n');
 }
+
