@@ -1,21 +1,22 @@
 #include "main.h"
 
 /**
- * Description: Function that fills memory with a constant byte
- * @param s: starter adress
- * @param b: constant byte
- * @param n: filled byte
+ * _memset - Bellek alanını sabit bir bayt ile doldurur.
+ * @param s: Doldurulacak bellek alanının başlangıç adresi (işaretçi).
+ * @param b: Bellek alanına yazılacak sabit bayt değeri.
+ * @param n: Doldurulacak bayt sayısı.
  *
- * Return: Always 0
+ * @return: Bellek alanı s'ye bir işaretçi döndürür.
  */
 char *_memset(char *s, char b, unsigned int n)
 {
-	unsigned int i;
+    unsigned int i;
 
-	for (i = 0; i < n; i++)
-	{
-		s[i] = b;
-	}
-	
-	return (s);
+    for (i = 0; i < n; i++)
+    {
+        s[i] = b;
+    }
+
+    return (s);
 }
+
