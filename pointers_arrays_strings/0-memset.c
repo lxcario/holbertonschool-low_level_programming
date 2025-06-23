@@ -1,4 +1,4 @@
-#include "main.h" // "main.h" dosyasının mevcut olduğunu varsayıyoruz
+#include "main.h" /* "main.h" dosyasının mevcut olduğunu varsayıyoruz */
 
 /**
  * _memset - Bellek alanını sabit bir bayt ile doldurur.
