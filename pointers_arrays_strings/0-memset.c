@@ -10,7 +10,7 @@
  */
 char *_memset(char *s, char b, unsigned int n)
 {
-	unsigned int i; // Döngü için sayaç değişkeni
+	unsigned int i; /* Döngü için sayaç değişkeni */
 
 	for (i = 0; i < n; i++)
 	{
@@ -19,3 +19,4 @@ char *_memset(char *s, char b, unsigned int n)
 
 	return (s);
 }
+
