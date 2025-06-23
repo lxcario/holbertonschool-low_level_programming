@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * Description : Function that fills memory with a constant byte
- * @s: starter adress
- * @b: constant byte
- * @n: filled byte
+ * Description: Function that fills memory with a constant byte
+ * @param s: starter adress
+ * @param b: constant byte
+ * @param n: filled byte
  *
  * Return: Always 0
  */
