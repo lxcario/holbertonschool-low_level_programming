@@ -9,7 +9,7 @@
  */
 unsigned int _strspn(char *s, char *accept)
 {
-		unsingned int length = 0;
+		unsigned int length = 0;
 		int i, j;
 		int found_in_accept;
 
