@@ -3,12 +3,10 @@
 
 /**
  * _strchr - function returns a pointer
- *
  * @c: character
  * @s: string
- * @NULL: character not found
  *
- * Return : pointer to the first occurrence of the character
+ * Return : pointer to the first occurrence of the character, NULL if the character is not found.
  */
 char *_strchr(char *s, char c)
 {
