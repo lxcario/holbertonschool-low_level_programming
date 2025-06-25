@@ -2,7 +2,7 @@
 #include <stddef.h>
 
 /**
- * _strchr - function returns a pointer to the first occurrence of the character c in the string s
+ * _strchr - function returns a pointer
  *
  * @c: character
  * @s: string
