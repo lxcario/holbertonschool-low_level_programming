@@ -1,4 +1,4 @@
-#include <stddef.h> // Required for NULL
+#include <stddef.h>
 
 /**
  * _strpbrk - Locates the first occurrence in the string s of any of the bytes
