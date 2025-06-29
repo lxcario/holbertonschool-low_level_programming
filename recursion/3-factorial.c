@@ -1,26 +1,26 @@
 #include "main.h"
 
 /**
- * _pow_recursion - Returns the value of x raised to the power of y.
- * @x: The base number.
- * @y: The exponent.
+ * factorial - Calculates the factorial of a given number.
+ * @n: The number to calculate the factorial of.
  *
- * Return: The result of x^y, or -1 if y is negative.
+ * Return: The factorial of n, or -1 if n is negative (error).
  */
-int _pow_recursion(int x, int y)
+int factorial(int n)
 {
-	/* If y is negative, return -1 as per the prototype requirement */
-	if (y < 0)
+	/* Base case: If n is negative, return -1 to indicate an error */
+	if (n < 0)
 	{
 		return (-1);
 	}
 
-	/* Base case: x raised to the power of 0 is 1 */
-	if (y == 0)
+	/* Base case: Factorial of 0 is 1 */
+	if (n == 0)
 	{
 		return (1);
 	}
 
-	/* Recursive step: x^y = x * x^(y-1) */
-	return (x * _pow_recursion(x, y - 1));
+	/* Recursive step: n * factorial(n - 1) */
+	return (n * factorial(n - 1));
 }
+
