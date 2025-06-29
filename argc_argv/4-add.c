@@ -1,6 +1,6 @@
-#include <stdio.h> /* For printf */
-#include <stdlib.h> /* For atoi */
-#include <ctype.h> /* For isdigit */
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 /**
  * main - Adds positive numbers passed as command-line arguments.
@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
 	for (i = 1; i < argc; i++)
 	{
 		digit_found = 0;
-
 		for (j = 0; argv[i][j] != '\0'; j++)
 		{
 			if (j == 0 && (argv[i][j] == '-' || argv[i][j] == '+'))
@@ -36,6 +35,7 @@ int main(int argc, char *argv[])
 					return (1);
 				}
 				continue;
+			}
 
 			if (!isdigit(argv[i][j]))
 			{
@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
 
 		sum += atoi(argv[i]);
 	}
+
 	printf("%d\n", sum);
 
 	return (0);
