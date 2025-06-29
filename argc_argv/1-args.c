@@ -11,8 +11,10 @@ int main(int argc, char *argv[])
 {
 	(void) argv; /* Suppress unused parameter warning for argv */
 
-	/* argc includes the program name itself, so subtract 1 for the count of arguments passed. */
+	/* argc includes the program name itself, */
+	/* so subtract 1 for the count of arguments passed. */
 	printf("%d\n", argc - 1);
 
 	return (0);
 }
+
