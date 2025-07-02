@@ -32,5 +32,5 @@ char *str_concat(char *s1, char *s2)
 
 	a[i] = '\0';
 
-	return (a)
+	return (a);
 }
