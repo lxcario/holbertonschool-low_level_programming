@@ -7,7 +7,7 @@
  * @c: specific char
  * Return: char pointer to malloc created memory address or NULL if error
  */
-char *create_array(unsigned int size, char c);
+char *create_array(unsigned int size, char c)
 {
 	char *arr
 	unsigned int i
