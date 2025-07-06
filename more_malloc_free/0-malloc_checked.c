@@ -8,7 +8,7 @@
  * If malloc fails, the function causes normal process termination
  * with a status value of 98.
  */
-void *malloc_checked(unsigned int b);
+void *malloc_checked(unsigned int b)
 {
 	void *ptr;
 
