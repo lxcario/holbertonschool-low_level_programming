@@ -36,15 +36,13 @@ static void print_float_handler(va_list *args_ptr)
 static void print_string_handler(va_list *args_ptr)
 {
 	char *s = va_arg(*args_ptr, char *);
+	char *actual_s = s; /* Use a temporary pointer */
 
 	if (s == NULL)
 	{
-		printf("(nil)");
+		actual_s = "(nil)";
 	}
-	else
-	{
-		printf("%s", s);
-	}
+	printf("%s", actual_s);
 }
 
 /**
@@ -73,7 +71,7 @@ void print_all(const char * const format, ...)
 		{'i', print_int_handler},
 		{'f', print_float_handler},
 		{'s', print_string_handler},
-		{0, NULL} /* Sentinel */
+		{0, NULL}
 	};
 	int j;
 
