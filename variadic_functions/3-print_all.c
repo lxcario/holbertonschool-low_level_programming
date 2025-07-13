@@ -48,6 +48,17 @@ static void print_string_handler(va_list *args_ptr)
 }
 
 /**
+ * struct printer_s - Maps format char to print function.
+ * @type_char: The format character.
+ * @print_func: The function to handle printing.
+ */
+typedef struct printer_s
+{
+	char type_char;
+	void (*print_func)(va_list *);
+} printer_t;
+
+/**
  * print_all - Prints anything.
  * @format: List of types.
  * @...: Arguments.
@@ -57,23 +68,29 @@ void print_all(const char * const format, ...)
 	va_list args;
 	unsigned int i = 0;
 	char *sep = "";
-
-	static void (*print_handlers[256])(va_list *) = {
-		['c'] = print_char_handler,
-		['i'] = print_int_handler,
-		['f'] = print_float_handler,
-		['s'] = print_string_handler
+	printer_t printers[] = {
+		{'c', print_char_handler},
+		{'i', print_int_handler},
+		{'f', print_float_handler},
+		{'s', print_string_handler},
+		{0, NULL} /* Sentinel */
 	};
+	int j;
 
 	va_start(args, format);
 
 	while (format && format[i])
 	{
-		if (print_handlers[(unsigned char)format[i]] != NULL)
+		j = 0;
+		while (printers[j].type_char != 0)
 		{
-			printf("%s", sep);
-			print_handlers[(unsigned char)format[i]](&args);
-			sep = ", ";
+			if (format[i] == printers[j].type_char)
+			{
+				printf("%s", sep);
+				printers[j].print_func(&args);
+				sep = ", ";
+			}
+			j++;
 		}
 		i++;
 	}
