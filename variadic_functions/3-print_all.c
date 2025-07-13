@@ -36,7 +36,7 @@ static void print_float_handler(va_list *args_ptr)
 static void print_string_handler(va_list *args_ptr)
 {
 	char *s = va_arg(*args_ptr, char *);
-	char *actual_s = s; /* Use a temporary pointer */
+	char *actual_s = s;
 
 	if (s == NULL)
 	{
@@ -44,17 +44,6 @@ static void print_string_handler(va_list *args_ptr)
 	}
 	printf("%s", actual_s);
 }
-
-/**
- * struct printer_s - Maps format char to print function.
- * @type_char: The format character.
- * @print_func: The function to handle printing.
- */
-typedef struct printer_s
-{
-	char type_char;
-	void (*print_func)(va_list *);
-} printer_t;
 
 /**
  * print_all - Prints anything.
