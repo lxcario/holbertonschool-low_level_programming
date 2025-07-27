@@ -4,11 +4,10 @@
 #include <stddef.h> /* For size_t */
 
 /**
- * struct hash_node_s - Node of a hash table
- *
- * @key: The key, string unique in the hash table
- * @value: The value corresponding to a key
- * @next: A pointer to the next node of the List
+ * struct hash_node_s - Node of a hash table.
+ * @key: The key.
+ * @value: The value.
+ * @next: Pointer to next node.
  */
 typedef struct hash_node_s
 {
@@ -18,10 +17,9 @@ typedef struct hash_node_s
 } hash_node_t;
 
 /**
- * struct hash_table_s - Hash table data structure
- *
- * @size: The size of the array
- * @array: An array of pointers to the first node of a linked list
+ * struct hash_table_s - Hash table data structure.
+ * @size: Size of the array.
+ * @array: Array of pointers to nodes.
  */
 typedef struct hash_table_s
 {
@@ -33,37 +31,3 @@ typedef struct hash_table_s
 hash_table_t *hash_table_create(unsigned long int size);
 
 #endif /* HASH_TABLES_H */
-```c
-#include <stdlib.h>
-#include "hash_tables.h"
-
-/**
- * hash_table_create - Creates a hash table.
- * @size: The size of the array.
- * Return: Pointer to the newly created hash table, or NULL if it failed.
- */
-hash_table_t *hash_table_create(unsigned long int size)
-{
-	hash_table_t *ht;
-	unsigned long int i;
-
-	if (size == 0)
-		return (NULL);
-
-	ht = malloc(sizeof(hash_table_t));
-	if (ht == NULL)
-		return (NULL);
-
-	ht->size = size;
-	ht->array = malloc(sizeof(hash_node_t *) * size);
-	if (ht->array == NULL)
-	{
-		free(ht);
-		return (NULL);
-	}
-
-	for (i = 0; i < size; i++)
-		ht->array[i] = NULL;
-
-	return (ht);
-}
