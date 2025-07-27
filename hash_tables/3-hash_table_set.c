@@ -3,6 +3,42 @@
 #include "hash_tables.h"
 
 /**
+ * create_and_add_node - Helper to create and add a new node to the list.
+ * @head: Pointer to the head of the list.
+ * @key: The key string.
+ * @value_copy: The duplicated value string.
+ * Return: Pointer to the new node on success, NULL on failure.
+ */
+static hash_node_t *create_and_add_node(hash_node_t **head, const char *key,
+					 char *value_copy)
+{
+	hash_node_t *new_node;
+	char *key_copy;
+
+	new_node = malloc(sizeof(hash_node_t));
+	if (new_node == NULL)
+	{
+		free(value_copy);
+		return (NULL);
+	}
+
+	key_copy = strdup(key);
+	if (key_copy == NULL)
+	{
+		free(value_copy);
+		free(new_node);
+		return (NULL);
+	}
+
+	new_node->key = key_copy;
+	new_node->value = value_copy;
+	new_node->next = *head; /* Point new node to current head of list */
+	*head = new_node;       /* New node becomes the head */
+
+	return (new_node);
+}
+
+/**
  * hash_table_set - Adds an element to the hash table.
  * @ht: The hash table to add or update.
  * @key: The key (cannot be empty string).
@@ -12,10 +48,8 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *new_node;
 	hash_node_t *current;
 	char *value_copy;
-	char *key_copy;
 
 	if (ht == NULL || key == NULL || *key == '\0')
 		return (0);
@@ -40,25 +74,5 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 
 	/* Key not found, create new node and add at the beginning */
-	new_node = malloc(sizeof(hash_node_t));
-	if (new_node == NULL)
-	{
-		free(value_copy);
-		return (0);
-	}
-
-	key_copy = strdup(key);
-	if (key_copy == NULL)
-	{
-		free(value_copy);
-		free(new_node);
-		return (0);
-	}
-
-	new_node->key = key_copy;
-	new_node->value = value_copy;
-	new_node->next = ht->array[index]; /* Point new node to current head of list */
-	ht->array[index] = new_node; /* New node becomes the head */
-
-	return (1);
+	return ((create_and_add_node(&(ht->array[index]), key, value_copy) != NULL));
 }
