@@ -35,5 +35,6 @@ list_t *add_node_end(list_t **head, const char *str);
 size_t print_list(const list_t *h);
 void free_list(list_t *head);
 size_t print_dlistint(const dlistint_t *h);
+size_t dlistint_len(const dlistint_t *h);
 
 #endif
