@@ -74,3 +74,4 @@ int main(int argc, char *argv[])
 		handle_error(100, "Error: Can't close fd %s", NULL, fd_to);
 
 	return (0);
+}
