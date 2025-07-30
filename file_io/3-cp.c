@@ -7,10 +7,10 @@
 #define BUFFER_SIZE 1024
 
 /**
- * error_exit_str - prints an error message with a string argument and exits.
+ * error_exit_str - prints an error message with a string and exits.
  * @code: exit code.
- * @message: format string.
- * @arg: string to insert into the format.
+ * @message: error message format.
+ * @arg: string argument to format.
  */
 void error_exit_str(int code, const char *message, const char *arg)
 {
@@ -21,8 +21,8 @@ void error_exit_str(int code, const char *message, const char *arg)
 /**
  * error_exit_fd - prints an error message with a file descriptor and exits.
  * @code: exit code.
- * @message: format string.
- * @fd: file descriptor to insert into the format.
+ * @message: error message format.
+ * @fd: file descriptor value to format.
  */
 void error_exit_fd(int code, const char *message, int fd)
 {
@@ -31,11 +31,10 @@ void error_exit_fd(int code, const char *message, int fd)
 }
 
 /**
- * main - Copies content of one file to another.
- * @argc: argument count.
- * @argv: argument vector.
- *
- * Return: 0 on success, exits on error with relevant code.
+ * main - copies the content of one file to another.
+ * @argc: number of arguments.
+ * @argv: array of arguments.
+ * Return: 0 on success, or exits with appropriate code on error.
  */
 int main(int argc, char *argv[])
 {
@@ -57,8 +56,18 @@ int main(int argc, char *argv[])
 		error_exit_str(99, "Error: Can't write to %s\n", argv[2]);
 	}
 
-	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+	while (1)
 	{
+		bytes_read = read(fd_from, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			close(fd_from);
+			close(fd_to);
+			error_exit_str(98, "Error: Can't read from file %s\n", argv[1]);
+		}
+		if (bytes_read == 0)
+			break;
+
 		bytes_written = write(fd_to, buffer, bytes_read);
 		if (bytes_written != bytes_read)
 		{
@@ -66,13 +75,6 @@ int main(int argc, char *argv[])
 			close(fd_to);
 			error_exit_str(99, "Error: Can't write to %s\n", argv[2]);
 		}
-	}
-
-	if (bytes_read == -1)
-	{
-		close(fd_from);
-		close(fd_to);
-		error_exit_str(98, "Error: Can't read from file %s\n", argv[1]);
 	}
 
 	if (close(fd_from) == -1)
