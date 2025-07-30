@@ -6,18 +6,37 @@
 
 #define BUFFER_SIZE 1024
 
+/**
+ * error_exit_str - Prints an error message with a string argument and exits.
+ * @code: Exit code.
+ * @message: Error message format string.
+ * @arg: String argument for the format.
+ */
 void error_exit_str(int code, const char *message, const char *arg)
 {
 	dprintf(STDERR_FILENO, message, arg);
 	exit(code);
 }
 
+/**
+ * error_exit_fd - Prints an error message with a file descriptor and exits.
+ * @code: Exit code.
+ * @message: Error message format string.
+ * @fd: File descriptor to insert into the message.
+ */
 void error_exit_fd(int code, const char *message, int fd)
 {
 	dprintf(STDERR_FILENO, message, fd);
 	exit(code);
 }
 
+/**
+ * main - Copies the content of one file to another.
+ * @argc: Argument count.
+ * @argv: Argument vector.
+ *
+ * Return: 0 on success, exits with relevant code on error.
+ */
 int main(int argc, char *argv[])
 {
 	int fd_from, fd_to;
@@ -38,22 +57,25 @@ int main(int argc, char *argv[])
 		error_exit_str(99, "Error: Can't write to %s\n", argv[2]);
 	}
 
-	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+	while (1)
 	{
+		bytes_read = read(fd_from, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			close(fd_from);
+			close(fd_to);
+			error_exit_str(98, "Error: Can't read from file %s\n", argv[1]);
+		}
+		if (bytes_read == 0)
+			break;
+
 		bytes_written = write(fd_to, buffer, bytes_read);
-		if (bytes_written != bytes_read)
+		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
 			close(fd_from);
 			close(fd_to);
 			error_exit_str(99, "Error: Can't write to %s\n", argv[2]);
 		}
-	}
-
-	if (bytes_read == -1)
-	{
-		close(fd_from);
-		close(fd_to);
-		error_exit_str(98, "Error: Can't read from file %s\n", argv[1]);
 	}
 
 	if (close(fd_from) == -1)
