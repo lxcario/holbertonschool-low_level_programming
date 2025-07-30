@@ -32,7 +32,7 @@ void handle_error(int code, const char *msg, const char *arg, int fd_val)
 int main(int argc, char *argv[])
 {
 	int fd_from, fd_to;
-	ssize_t bytes_read, bytes_written;
+	ssize_t bytes_read;
 	char buffer[BUFFER_SIZE];
 
 	if (argc != 3)
@@ -50,22 +50,26 @@ int main(int argc, char *argv[])
 		handle_error(99, "Error: Can't write to %s", argv[2], -1);
 	}
 
-	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+	while (1)
 	{
-		bytes_written = write(fd_to, buffer, bytes_read);
-		if (bytes_written == -1 || bytes_written != bytes_read)
+		bytes_read = read(fd_from, buffer, BUFFER_SIZE);
+
+		if (bytes_read == -1)
+		{
+			close(fd_from);
+			close(fd_to);
+			handle_error(98, "Error: Can't read from file %s", argv[1], -1);
+		}
+
+		if (bytes_read == 0)
+			break;
+
+		if (write(fd_to, buffer, bytes_read) == -1)
 		{
 			close(fd_from);
 			close(fd_to);
 			handle_error(99, "Error: Can't write to %s", argv[2], -1);
 		}
-	}
-
-	if (bytes_read == -1)
-	{
-		close(fd_from);
-		close(fd_to);
-		handle_error(98, "Error: Can't read from file %s", argv[1], -1);
 	}
 
 	if (close(fd_from) == -1)
