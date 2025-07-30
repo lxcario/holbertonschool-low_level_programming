@@ -46,14 +46,16 @@ int main(int argc, char *argv[])
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (fd_to == -1)
 	{
-		close(fd_from);
+		close(fd_from); /* Close source file before exiting */
 		handle_error(99, "Error: Can't write to %s", argv[2], -1);
 	}
 
+	/* Loop to read from source and write to destination */
 	while (1)
 	{
 		bytes_read = read(fd_from, buffer, BUFFER_SIZE);
 
+		/* Check for read error immediately */
 		if (bytes_read == -1)
 		{
 			close(fd_from);
@@ -61,9 +63,11 @@ int main(int argc, char *argv[])
 			handle_error(98, "Error: Can't read from file %s", argv[1], -1);
 		}
 
+		/* If end of file is reached, break the loop */
 		if (bytes_read == 0)
 			break;
 
+		/* If bytes were read, attempt to write them */
 		if (write(fd_to, buffer, bytes_read) == -1)
 		{
 			close(fd_from);
@@ -72,6 +76,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	/* Close file descriptors and check for errors */
 	if (close(fd_from) == -1)
 		handle_error(100, "Error: Can't close fd %s", NULL, fd_from);
 	if (close(fd_to) == -1)
